@@ -1,40 +1,40 @@
 package edu.javacourse.studentorder.domain;
 
 public class StudentOrder {
-    private String hFirstName;
-    private String hFLastName;
-    private String wFirstName;
-    private String wFLastName;
+    private long studentOrderId;
+    private Adult husband;
+    private Adult wife;
+    private Child child;
 
-    public String gethFirstName() {
-        return hFirstName;
+    public long getStudentOrderId() {
+        return studentOrderId;
     }
 
-    public void sethFirstName(String hFirstName) {
-        this.hFirstName = hFirstName;
+    public void setStudentOrderId(long studentOrderId) {
+        this.studentOrderId = studentOrderId;
     }
 
-    public String gethFLastName() {
-        return hFLastName;
+    public Adult getHusband() {
+        return husband;
     }
 
-    public void sethFLastName(String hFLastName) {
-        this.hFLastName = hFLastName;
+    public void setHusband(Adult husband) {
+        this.husband = husband;
     }
 
-    public String getwFirstName() {
-        return wFirstName;
+    public Adult getWife() {
+        return wife;
     }
 
-    public void setwFirstName(String wFirstName) {
-        this.wFirstName = wFirstName;
+    public void setWife(Adult wife) {
+        this.wife = wife;
     }
 
-    public String getwFLastName() {
-        return wFLastName;
+    public Child getChild() {
+        return child;
     }
 
-    public void setwFLastName(String wFLastName) {
-        this.wFLastName = wFLastName;
+    public void setChild(Child child) {
+        this.child = child;
     }
 }
