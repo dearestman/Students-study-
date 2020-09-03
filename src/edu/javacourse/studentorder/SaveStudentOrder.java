@@ -1,7 +1,5 @@
 package edu.javacourse.studentorder;
 
-import edu.javacourse.studentorder.domain.Person;
-import edu.javacourse.studentorder.domain.other.Adult;
 import edu.javacourse.studentorder.domain.StudentOrder;
 
 //Класс студенческого заявления
