@@ -1,6 +1,6 @@
 package edu.javacourse.studentorder.validator;
 
-import edu.javacourse.studentorder.domain.AnswerWeeding;
+import edu.javacourse.studentorder.domain.wedding.AnswerWeeding;
 import edu.javacourse.studentorder.domain.StudentOrder;
 
 public class WeedingValidator {
