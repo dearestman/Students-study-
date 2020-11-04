@@ -3,6 +3,7 @@ DROP TABLE if exists js_student_order;
 DROP TABLE if exists js_passport_office;
 DROP TABLE if exists js_register_office;
 DROP TABLE if exists js_country_struct;
+
 DROP TABLE if exists js_street;
 
 create table js_street(
