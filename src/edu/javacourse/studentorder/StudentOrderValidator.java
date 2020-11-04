@@ -11,6 +11,7 @@ import edu.javacourse.studentorder.validator.CityRegisterValidator;
 import edu.javacourse.studentorder.validator.StudentValidator;
 import edu.javacourse.studentorder.validator.WeedingValidator;
 
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -29,7 +30,20 @@ public class StudentOrderValidator {
         studentVal = new StudentValidator();
         mailSender = new MailSender();
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Class.forName("org.postgresql.Driver");
+        Connection connection = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/jc_student",
+                "postgres", "123"
+        );
+
+        Statement stmt  = connection.createStatement();
+        ResultSet rs =  stmt.executeQuery("select * from js_street");
+        while (rs.next()){
+            System.out.println(rs.getLong(1) + " " + rs.getString(2));
+        }
+
+
         StudentOrderValidator sov = new StudentOrderValidator();
         sov.checkAll();
     }
