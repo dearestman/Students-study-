@@ -32,10 +32,19 @@ public class StudentOrderValidator {
         mailSender = new MailSender();
     }
     public static void main(String[] args)throws Exception{
-        List<Street> d = new DictionaryDaoImpl().findStreets("d");
+        List<Street> d = new DictionaryDaoImpl().findStreets("про");
         for (Street c: d){
             System.out.println(c.getStreetCode() + " : " + c.getStreetName());
         }
+        List<PassportOffice> po = new DictionaryDaoImpl().findPassportOffices("010020000000");
+        for (PassportOffice p : po){
+            System.out.println(p.getOfficeName() );
+        }
+        List<RegisterOffice> ro = new DictionaryDaoImpl().findRegisterOffices("010010000000");
+        for (RegisterOffice r : ro){
+            System.out.println(r.getOfficeName() );
+        }
+
 
 //        StudentOrderValidator sov = new StudentOrderValidator();
 //        sov.checkAll();
