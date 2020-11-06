@@ -1,5 +1,6 @@
 package edu.javacourse.studentorder;
 
+import edu.javacourse.studentorder.dao.DictionaryDaoImpl;
 import edu.javacourse.studentorder.domain.*;
 import edu.javacourse.studentorder.domain.children.AnswerChildren;
 import edu.javacourse.studentorder.domain.register.AnswerCityRegister;
@@ -30,22 +31,14 @@ public class StudentOrderValidator {
         studentVal = new StudentValidator();
         mailSender = new MailSender();
     }
-    public static void main(String[] args) throws Exception {
-        Class.forName("org.postgresql.Driver");
-        Connection connection = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/jc_student",
-                "postgres", "123"
-        );
-
-        Statement stmt  = connection.createStatement();
-        ResultSet rs =  stmt.executeQuery("select * from js_street");
-        while (rs.next()){
-            System.out.println(rs.getLong(1) + " " + rs.getString(2));
+    public static void main(String[] args)throws Exception{
+        List<Street> d = new DictionaryDaoImpl().findStreets("d");
+        for (Street c: d){
+            System.out.println(c.getStreetCode() + " : " + c.getStreetName());
         }
 
-
-        StudentOrderValidator sov = new StudentOrderValidator();
-        sov.checkAll();
+//        StudentOrderValidator sov = new StudentOrderValidator();
+//        sov.checkAll();
     }
 
     public void checkAll(){
