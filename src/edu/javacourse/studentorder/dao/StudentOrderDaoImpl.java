@@ -44,28 +44,36 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(INSERT_ORDER, new String[] {"student_order_id"})){
 
-            stmt.setInt(1, StudentOrderStatus.START.ordinal());
-            stmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            con.setAutoCommit(false);
 
-            //husband and wife
-            setParamsForAdult(stmt, 3, so.getHusband());
-            setParamsForAdult(stmt, 16, so.getWife());
+            try {
+                stmt.setInt(1, StudentOrderStatus.START.ordinal());
+                stmt.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
 
-            //marry info
-            stmt.setString(29, so.getMarriageCertificateId());
-            stmt.setLong(30, so.getMarriageOffice().getOfficeId());
-            stmt.setDate(31, Date.valueOf(so.getMarriageDate()));
+                //husband and wife
+                setParamsForAdult(stmt, 3, so.getHusband());
+                setParamsForAdult(stmt, 16, so.getWife());
 
-            stmt.executeUpdate();
+                //marry info
+                stmt.setString(29, so.getMarriageCertificateId());
+                stmt.setLong(30, so.getMarriageOffice().getOfficeId());
+                stmt.setDate(31, Date.valueOf(so.getMarriageDate()));
 
-            ResultSet gkRs = stmt.getGeneratedKeys();
-            if (gkRs.next()){
-                result = gkRs.getLong(1);
+                stmt.executeUpdate();
+
+                ResultSet gkRs = stmt.getGeneratedKeys();
+                if (gkRs.next()) {
+                    result = gkRs.getLong(1);
+                }
+                gkRs.close();
+
+                saveChildren(con, so, result);
+
+                con.commit();
+            } catch (SQLException ex) {
+                con.rollback();
+                throw ex;
             }
-            gkRs.close();
-
-            saveChildren(con,so, result);
-
         }
         catch (SQLException ex){
             throw new DaoExeption(ex);
