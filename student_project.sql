@@ -3,6 +3,8 @@ DROP TABLE if exists js_student_order;
 DROP TABLE if exists js_passport_office;
 DROP TABLE if exists js_register_office;
 DROP TABLE if exists js_country_struct;
+DROP TABLE if exists js_university;
+
 
 DROP TABLE if exists js_street;
 
@@ -18,6 +20,11 @@ create table js_country_struct(
 	PRIMARY KEY (area_id)
 );
 
+create table js_university(
+	university_id integer not null,
+	university_name varchar (300),
+	PRIMARY KEY (university_id)
+);
 create table js_passport_office(
 	p_office_id integer not null,
 	P_office_area_id char(12),
@@ -51,6 +58,8 @@ create table js_student_order(
     h_building varchar (10) not null,
     h_extension varchar (10),
     h_apartment varchar (10),
+    h_university_id integer not null,
+    h_student_number varchar (30),
     w_sur_name varchar (100) not null,
     w_given_name varchar (100) not null,
     w_patronymic varchar (100) not null,
@@ -64,12 +73,18 @@ create table js_student_order(
     w_building varchar (10) not null,
     w_extension varchar (10),
     w_apartment varchar (10),
+    w_university_id integer not null,
+    w_student_number varchar (30),
     certificate_id varchar (20) not null ,
     register_office_id integer not null,
     marriage_date date not null,
     primary key (student_order_id),
     foreign key (h_street_code) references js_street(street_code) on delete restrict,
+    foreign key (h_passport_office_id) references js_passport_office(p_office_id) on delete restrict,
+    foreign key (h_university_id) references js_university(university_id) on delete restrict,
     foreign key (w_street_code) references js_street(street_code) on delete restrict,
+    foreign key (w_passport_office_id) references js_passport_office(p_office_id) on delete restrict,
+    foreign key (w_university_id) references js_university(university_id) on delete restrict,
     foreign key (register_office_id) references js_register_office(r_office_id) on delete restrict
 );
 

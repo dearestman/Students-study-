@@ -5,6 +5,11 @@ INSERT INTO js_street (street_code, street_name) VALUES
 (4, 'улица Гороховая'),
 (5, 'проспект Ветеранов');
 
+INSERT INTO js_university (university_id, university_name) VALUES
+(1, 'Санкт-Петербургский Государственный Университет'),
+(2, 'Санкт-Петербургский Политехнический Университет'),
+(3, 'Санкт-Петербургский Морской Технический Университет');
+
 
 INSERT INTO js_country_struct (area_id, area_name) VALUES
 ('010000000000', 'Город'),
