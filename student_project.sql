@@ -107,3 +107,5 @@ CREATE TABLE js_student_child(
     foreign key (c_street_code) references js_street(street_code) on delete restrict,
     foreign key (c_register_office_id) references js_register_office(r_office_id) on delete restrict
 );
+
+ CREATE INDEX idx_student_order_status ON js_student_order(student_order_status);
